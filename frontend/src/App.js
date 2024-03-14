@@ -1,33 +1,19 @@
-// App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Dados from './components/Dados'; // Importe o componente Dados
-import Sobre from './components/Sobre'; // Importe o componente Sobre
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Importe o componente Routes
+import Home from './pages/Home';
+import Dados from './components/Dados';
+import Grafico from './pages/Grafico';
+import Sobre from './pages/Sobre';
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/sobre">Sobre</Link>
-            </li>
-            <li>
-              <Link to="/Dados">Dados</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Routes>
-          <Route path="/" element={<Dados />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/sobre" element={<Dados />} />
-        </Routes>
-      </div>
+      <Routes> {/* Envolver os componentes Route dentro do componente Routes */}
+        <Route path="/" element={<Home />} /> {/* Usar 'element' para especificar o componente */}
+        <Route path="/dados" element={<Dados />} />
+        <Route path="/grafico" element={<Grafico />} />
+        <Route path="/sobre" element={<Sobre />} />
+      </Routes>
     </Router>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Chart from 'chart.js/auto'; // Importe o Chart.js
+import Chart from 'chart.js/auto';
+import { Link } from 'react-router-dom'; // Importe o Link do react-router-dom
 
 function Dados() {
   const [dados, setDados] = useState([]);
@@ -11,11 +12,9 @@ function Dados() {
         const response = await axios.get('http://localhost:5000/dados');
         setDados(response.data);
 
-        // Obtenha os dados para o gráfico
         const labels = response.data.map(item => item.Mes_Ano);
         const percentuais = response.data.map(item => item.Variacao_Percentual);
 
-        // Renderize o gráfico
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {
           type: 'line',
@@ -40,7 +39,8 @@ function Dados() {
   return (
     <div>
       <h1>Dados do MySQL</h1>
-      <canvas id="myChart" width="400" height="200"></canvas> {/* Adicione o elemento canvas para o gráfico */}
+      <Link to="/">Voltar para Home</Link> {/* Mova o Link para a página inicial para logo após o elemento <h1> */}
+      <canvas id="myChart" width="400" height="200"></canvas>
       <table>
         <thead>
           <tr>
